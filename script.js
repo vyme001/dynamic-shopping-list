@@ -9,16 +9,24 @@ form.addEventListener("submit", (e)=>{
     e.preventDefault();
     ul.appendChild(newBundle())
     input.value = "";
+    input.focus();
 });
 
 
 //generate new list;(span, button), bundle
 const newBundle = () =>{
     const li = document.createElement("li");
+
     const span = document.createElement("span");
         span.innerText = inputValue;
+
     const btn = document.createElement("button");
-        btn.textContent = "Delete";
+    btn.addEventListener("click", (e)=>{
+        const li = e.target.parentNode;
+        li.remove();
+    });
+    btn.textContent = "Delete";
+
     li.appendChild(span);
     li.appendChild(btn);
     return li;
